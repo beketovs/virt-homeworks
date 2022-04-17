@@ -88,15 +88,15 @@ Docker отлично подойдет. Volume прокидываем на хо�
 ## Задача 3
 
 - Запустите первый контейнер из образа ***centos*** c любым тэгом в фоновом режиме, подключив папку ```/data``` из текущей рабочей директории на хостовой машине в ```/data``` контейнера;
-
+```
 root@vagrant:/data# docker run -d --rm -i -t --name mycentos -v /data:/data centos:6.6 /bin/bash
-
+```
 - Запустите второй контейнер из образа ***debian*** в фоновом режиме, подключив папку ```/data``` из текущей рабочей директории на хостовой машине в ```/data``` контейнера;
-
+```
 root@vagrant:/home/vagrant/page# docker run -d -i -t --rm --name mydebian -v /data:/data debian
-
+```
 - Подключитесь к первому контейнеру с помощью ```docker exec``` и создайте текстовый файл любого содержания в ```/data```;
-
+```
 root@vagrant:/data# docker exec -i -t mycentos /bin/bash
 [root@cdf5d35216be /]#
 [root@cdf5d35216be /]# cd /data/
@@ -104,9 +104,9 @@ root@vagrant:/data# docker exec -i -t mycentos /bin/bash
 [root@cdf5d35216be data]# echo "This my file" > myfile.txt
 [root@cdf5d35216be data]# cat myfile.txt
 This my file
-
+```
 - Добавьте еще один файл в папку ```/data``` на хостовой машине;
-
+```
 root@vagrant:/data# touch myfile2.txt
 root@vagrant:/data# ls -la
 total 12
@@ -114,9 +114,9 @@ drwxr-xr-x  2 root root 4096 Apr 17 22:03 .
 drwxr-xr-x 22 root root 4096 Apr 17 21:28 ..
 -rw-r--r--  1 root root    0 Apr 17 22:03 myfile2.txt
 -rw-r--r--  1 root root   13 Apr 17 22:02 myfile.txt
-
+```
 - Подключитесь во второй контейнер и отобразите листинг и содержание файлов в ```/data``` контейнера.
-
+```
 root@vagrant:/data# docker exec -i -t mydebian /bin/bash
 root@5115f069f78e:/# cd /data/
 root@5115f069f78e:/data# ls -la
@@ -125,7 +125,7 @@ drwxr-xr-x 2 root root 4096 Apr 17 22:03 .
 drwxr-xr-x 1 root root 4096 Apr 17 22:01 ..
 -rw-r--r-- 1 root root   13 Apr 17 22:02 myfile.txt
 -rw-r--r-- 1 root root    0 Apr 17 22:03 myfile2.txt
-
+```
 ## Задача 4 (*)
 
 Воспроизвести практическую часть лекции самостоятельно.
