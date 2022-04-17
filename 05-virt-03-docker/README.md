@@ -30,16 +30,16 @@ Hey, Netology
 
 - root@vagrant:/home/vagrant/page# docker exec -it nginx-container bash
 - root@841ffd3e51dd:/# cat /var/www/html/index.html
-- index.html               index.nginx-debian.html
-- <html>
-- <head>
-- Hey, Netology
-- </head>
-- <body>
-- <h1>I’m DevOps Engineer!</h1>
-- </body>
-- </html>
-
+```
+<html>
+<head>
+Hey, Netology
+</head>
+<body>
+<h1>I’m DevOps Engineer!</h1>
+</body>
+</html>
+```
 ***
 
 ## Задача 2
