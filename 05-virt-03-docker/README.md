@@ -25,8 +25,10 @@ Hey, Netology
 Опубликуйте созданный форк в своем репозитории и предоставьте ответ в виде ссылки на https://hub.docker.com/username_repo.
 
 ***
+
+(https://hub.docker.com/repository/docker/beketov/mynginx)
+
 ```
-https://hub.docker.com/repository/docker/beketov/mynginx
 docker run -d --rm --name nginx-container -p 80:80 beketov/mynginx:1.0
 ```
 ```
