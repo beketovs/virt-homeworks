@@ -25,20 +25,20 @@ Hey, Netology
 Опубликуйте созданный форк в своем репозитории и предоставьте ответ в виде ссылки на https://hub.docker.com/username_repo.
 
 ***
-https://hub.docker.com/repository/docker/beketov/mynginx
-docker run -d --rm --name nginx-container -p 80:80 beketov/mynginx:1.0
+- https://hub.docker.com/repository/docker/beketov/mynginx
+- docker run -d --rm --name nginx-container -p 80:80 beketov/mynginx:1.0
 
-root@vagrant:/home/vagrant/page# docker exec -it nginx-container bash
-root@841ffd3e51dd:/# cat /var/www/html/index.html
-index.html               index.nginx-debian.html
-<html>
-<head>
-Hey, Netology
-</head>
-<body>
-<h1>I’m DevOps Engineer!</h1>
-</body>
-</html>
+- root@vagrant:/home/vagrant/page# docker exec -it nginx-container bash
+- root@841ffd3e51dd:/# cat /var/www/html/index.html
+- index.html               index.nginx-debian.html
+- <html>
+- <head>
+- Hey, Netology
+- </head>
+- <body>
+- <h1>I’m DevOps Engineer!</h1>
+- </body>
+- </html>
 
 ***
 
