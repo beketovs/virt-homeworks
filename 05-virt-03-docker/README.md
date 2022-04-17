@@ -26,7 +26,7 @@ Hey, Netology
 
 ***
 
-(https://hub.docker.com/repository/docker/beketov/mynginx)
+https://hub.docker.com/repository/docker/beketov/mynginx
 
 ```
 docker run -d --rm --name nginx-container -p 80:80 beketov/mynginx:1.0
