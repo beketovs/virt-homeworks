@@ -46,7 +46,8 @@ beketov@beketovs-MacBook-Pro packer %
 </p>
 
 ***
-<img width="726" alt="Screen Shot 2022-04-22 at 00 23 54" src="https://user-images.githubusercontent.com/36231585/164554736-386cb599-aa16-40c0-b7fb-8325da1ce3bf.png">
+<img width="751" alt="Screen Shot 2022-04-22 at 01 09 06" src="https://user-images.githubusercontent.com/36231585/164559888-8ecb7b4b-c270-4f97-bcb0-d43e6e59d0bd.png">
+
 ***
 
 ## Задача 3
@@ -59,10 +60,7 @@ beketov@beketovs-MacBook-Pro packer %
   <img width="1200" height="600" src="./assets/yc_02.png">
 </p>
 
-## Задача 4 (*)
-
-Создать вторую ВМ и подключить её к мониторингу развёрнутому на первом сервере.
-
-Для получения зачета, вам необходимо предоставить:
-- Скриншот из Grafana, на котором будут отображаться метрики добавленного вами сервера.
+***
+<img width="1430" alt="Screen Shot 2022-04-22 at 01 10 23" src="https://user-images.githubusercontent.com/36231585/164560021-db583adb-e827-4394-ab06-be7f6b3cde56.png">
+***
 
