@@ -45,6 +45,10 @@ beketov@beketovs-MacBook-Pro packer %
   <img width="1200" height="600" src="./assets/yc_01.png">
 </p>
 
+***
+<img width="726" alt="Screen Shot 2022-04-22 at 00 23 54" src="https://user-images.githubusercontent.com/36231585/164554736-386cb599-aa16-40c0-b7fb-8325da1ce3bf.png">
+***
+
 ## Задача 3
 
 Создать ваш первый готовый к боевой эксплуатации компонент мониторинга, состоящий из стека микросервисов.
