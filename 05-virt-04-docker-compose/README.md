@@ -18,6 +18,21 @@
 
 Для получения зачета, вам необходимо предоставить:
 - Скриншот страницы, как на слайде из презентации (слайд 37).
+***
+```
+beketov@beketovs-MacBook-Pro packer % yc compute image list
++----------------------+---------------+--------+----------------------+--------+
+|          ID          |     NAME      | FAMILY |     PRODUCT IDS      | STATUS |
++----------------------+---------------+--------+----------------------+--------+
+| fd8sribsje9i9k3ff8ka | centos-7-base | centos | f2esd9f5o5i9p7pkkk8k | READY  |
++----------------------+---------------+--------+----------------------+--------+
+
+beketov@beketovs-MacBook-Pro packer % 
+
+```
+<img width="1434" alt="Screen Shot 2022-04-21 at 23 01 36 2" src="https://user-images.githubusercontent.com/36231585/164543273-128a13fd-48de-4c8a-a7bd-5b7abb4010c5.png">
+
+***
 
 ## Задача 2
 
