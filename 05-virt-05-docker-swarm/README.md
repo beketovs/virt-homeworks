@@ -39,4 +39,37 @@ docker service ls
 # см.документацию: https://docs.docker.com/engine/swarm/swarm_manager_locking/
 docker swarm update --autolock=true
 ```
+Данная команда это способ дополнительной защиты. Docker имеет возможность защищать взаимный ключ шифрования TLS и ключ, используемый для шифрования и дешифрования журналов Raft в состоянии покоя, позволяя нам стать владельцем этих ключей и требовать ручной разблокировки ваших менеджеров.
 
+```
+[root@node01 ~]# docker swarm update --autolock=true
+Swarm updated.
+To unlock a swarm manager after it restarts, run the `docker swarm unlock`
+command and provide the following key:
+
+    SWMKEY-1-712ey6PUBA9VuSLV8j0LijLCsRtDZ/oUyBvOA0XQFdA
+
+Please remember to store this key in a password manager, since without it you
+will not be able to restart the manager.
+[root@node01 ~]# docker swarm unlock-key
+To unlock a swarm manager after it restarts, run the `docker swarm unlock`
+command and provide the following key:
+
+    SWMKEY-1-712ey6PUBA9VuSLV8j0LijLCsRtDZ/oUyBvOA0XQFdA
+
+Please remember to store this key in a password manager, since without it you
+will not be able to restart the manager.
+[root@node01 ~]# service  docker restart
+Redirecting to /bin/systemctl restart docker.service
+[root@node01 ~]# 
+[root@node01 ~]# docker node ls
+Error response from daemon: Swarm is encrypted and needs to be unlocked before it can be used. Please use "docker swarm unlock" to unlock it.
+[root@node01 ~]# docker swarm unlock
+Please enter unlock key: 
+[root@node01 ~]# 
+[root@node01 ~]# 
+[root@node01 ~]# docker swarm update --autolock=false
+Swarm updated.
+[root@node01 ~]# 
+
+```
