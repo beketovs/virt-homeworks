@@ -20,6 +20,7 @@
 ```
 docker node ls
 ```
+![Screen Shot 2022-04-23 at 16 30 08](https://user-images.githubusercontent.com/36231585/164896701-2a2306bd-f91e-4835-8e01-e2dad759ed4b.png)
 
 ## Задача 3
 
@@ -29,6 +30,7 @@ docker node ls
 ```
 docker service ls
 ```
+![Screen Shot 2022-04-23 at 16 30 30](https://user-images.githubusercontent.com/36231585/164896725-c74490ac-0178-41c3-9d11-c2b533a6a591.png)
 
 ## Задача 4 (*)
 
