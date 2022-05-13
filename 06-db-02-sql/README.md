@@ -12,6 +12,28 @@
 
 Приведите получившуюся команду или docker-compose манифест.
 
+```
+beketov@beketovs-MacBook-Pro postgreSQL % cat docker-compose.yml 
+version: "3.9"
+volumes:
+  postgres_data: {}
+  postgres_backup: {}
+services:
+  postgres:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      PGDATA: mydb
+    container_name: postgres12
+    volumes:
+    - postgres_data:/var/lib/postgresql/data
+    - postgres_backup:/backup
+    ports:
+    - "5432:5432"
+    restart: always
+```
+
 ## Задача 2
 
 В БД из задачи 1: 
