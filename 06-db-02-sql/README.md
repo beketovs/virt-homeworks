@@ -24,7 +24,7 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
-      PGDATA: mydb
+      POSTGRES_DB: mydb
     container_name: postgres12
     volumes:
     - postgres_data:/var/lib/postgresql/data
@@ -32,6 +32,25 @@ services:
     ports:
     - "5432:5432"
     restart: always
+```
+```
+beketov@beketovs-MacBook-Pro postgreSQL % psql -h 127.0.0.1 -U admin -d mydb
+Password for user admin: 
+psql (14.3, server 12.10 (Debian 12.10-1.pgdg110+1))
+Type "help" for help.
+mydb=# 
+mydb=# \l
+                             List of databases
+   Name    | Owner | Encoding |  Collate   |   Ctype    | Access privileges 
+-----------+-------+----------+------------+------------+-------------------
+ mydb      | admin | UTF8     | en_US.utf8 | en_US.utf8 | 
+ postgres  | admin | UTF8     | en_US.utf8 | en_US.utf8 | 
+ template0 | admin | UTF8     | en_US.utf8 | en_US.utf8 | =c/admin         +
+           |       |          |            |            | admin=CTc/admin
+ template1 | admin | UTF8     | en_US.utf8 | en_US.utf8 | =c/admin         +
+           |       |          |            |            | admin=CTc/admin
+(4 rows)
+
 ```
 
 ## Задача 2
