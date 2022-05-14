@@ -310,7 +310,7 @@ test_db=# EXPLAIN SELECT * FROM clients WHERE "заказ" is not null;
 ```
 beketov@beketovs-MacBook-Pro postgreSQL % docker exec -t postgres12 pg_dump -U admin test_db > backup/dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql
 beketov@beketovs-MacBook-Pro postgreSQL % docker stop postgres12
-beketov@beketovs-MacBook-Pro postgreSQL % docker run --name new_postgres12 -d -e POSTGRES_PASSWORD=admin -v /Users/beketov/Documents/docker/postgreSQL/backup:/backup postgres:12
+beketov@beketovs-MacBook-Pro data % docker run --name new_postgres12 -d -e POSTGRES_PASSWORD=admin -v /Users/beketov/Documents/docker/postgreSQL/backup:/backup -p 5432:5432 postgres:12
 beketov@beketovs-MacBook-Pro postgreSQL % docker exec -it new_postgres12 /bin/bash
 
 ```
