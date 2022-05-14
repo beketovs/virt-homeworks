@@ -308,11 +308,66 @@ test_db=# EXPLAIN SELECT * FROM clients WHERE "заказ" is not null;
 Приведите список операций, который вы применяли для бэкапа данных и восстановления. 
 ***
 ```
-beketov@beketovs-MacBook-Pro postgreSQL % docker exec -t postgres12 pg_dump -U admin test_db > backup/dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql
+beketov@beketovs-MacBook-Pro postgreSQL % docker exec -i postgres12 /bin/bash -c "PGPASSWORD=admin pg_dump --username admin test_db" > backup/dump.sql
 beketov@beketovs-MacBook-Pro postgreSQL % docker stop postgres12
-beketov@beketovs-MacBook-Pro data % docker run --name new_postgres12 -d -e POSTGRES_PASSWORD=admin -v /Users/beketov/Documents/docker/postgreSQL/backup:/backup -p 5432:5432 postgres:12
-beketov@beketovs-MacBook-Pro postgreSQL % docker exec -it new_postgres12 /bin/bash
+beketov@beketovs-MacBook-Pro postgreSQL % docker run --name new_postgres12 -d -e POSTGRES_PASSWORD=admin -v /Users/beketov/Documents/docker/postgreSQL/backup:/backup -p 5432:5432 postgres:12
+postgres=# CREATE DATABASE test_db;
+CREATE DATABASE
+postgres=# CREATE ROLE "test-admin-user";
+CREATE ROLE
+postgres=# CREATE ROLE "test-simple-user";
+CREATE ROLE
+postgres=# \q
 
+beketov@beketovs-MacBook-Pro postgreSQL % docker exec -i new_postgres12 /bin/bash -c "PGPASSWORD=admin psql --username postgres test_db" < backup/dump.sql
+SET
+SET
+SET
+SET
+SET
+ set_config 
+------------
+ 
+(1 row)
+
+SET
+SET
+SET
+SET
+SET
+SET
+CREATE TABLE
+ERROR:  role "admin" does not exist
+CREATE SEQUENCE
+ERROR:  role "admin" does not exist
+ALTER SEQUENCE
+CREATE TABLE
+ERROR:  role "admin" does not exist
+CREATE SEQUENCE
+ERROR:  role "admin" does not exist
+ALTER SEQUENCE
+ALTER TABLE
+ALTER TABLE
+COPY 5
+COPY 5
+ setval 
+--------
+      1
+(1 row)
+
+ setval 
+--------
+      1
+(1 row)
+
+ALTER TABLE
+ALTER TABLE
+CREATE INDEX
+ALTER TABLE
+GRANT
+GRANT
+GRANT
+GRANT
 ```
 ***
 ---
