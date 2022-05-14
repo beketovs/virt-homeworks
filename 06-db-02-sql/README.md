@@ -291,9 +291,8 @@ test_db=# EXPLAIN SELECT * FROM clients WHERE "заказ" is not null;
  Seq Scan on clients  (cost=0.00..1.00 rows=1 width=72)
    Filter: ("заказ" IS NOT NULL)
 (2 rows)
-
 ```
-
+Видим полную информацию выполнения запроса и видим cost на исполнение запроса = 0, что фактически означает что запрос оптимален.
 ***
 
 ## Задача 6
