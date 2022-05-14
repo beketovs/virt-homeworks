@@ -283,6 +283,19 @@ test_db=# SELECT * FROM clients WHERE "заказ" is not null;
 
 Приведите получившийся результат и объясните что значат полученные значения.
 
+***
+```
+test_db=# EXPLAIN SELECT * FROM clients WHERE "заказ" is not null;
+                       QUERY PLAN                       
+--------------------------------------------------------
+ Seq Scan on clients  (cost=0.00..1.00 rows=1 width=72)
+   Filter: ("заказ" IS NOT NULL)
+(2 rows)
+
+```
+
+***
+
 ## Задача 6
 
 Создайте бэкап БД test_db и поместите его в volume, предназначенный для бэкапов (см. Задачу 1).
