@@ -449,6 +449,7 @@ postgres=# \l
  postgres=# \c test_db;
 psql (14.3, server 12.10 (Debian 12.10-1.pgdg110+1))
 You are now connected to database "test_db" as user "postgres".
+
 test_db=# SELECT * FROM orders;
  id | наименование | цена 
 ----+--------------+------
@@ -467,16 +468,6 @@ test_db=# SELECT * FROM clients;
   1 | Иванов Иван Иванович | USA               |     3
   2 | Петров Петр Петрович | Canada            |     4
   3 | Иоганн Себастьян Бах | Japan             |     5
-(5 rows)
- 
-test_db=# test_db=# SELECT * FROM orders;
- id | наименование | цена 
-----+--------------+------
-  1 | Шоколад      |   10
-  2 | Принтер      | 3000
-  3 | Книга        |  500
-  4 | Монитор      | 7000
-  5 | Гитара       | 4000
 (5 rows)
 ```
 ***
