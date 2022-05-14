@@ -75,7 +75,95 @@ mydb=# \l
 - описание таблиц (describe)
 - SQL-запрос для выдачи списка пользователей с правами над таблицами test_db
 - список пользователей с правами над таблицами test_db
+***
+```
+test_db=# \l
+                                  List of databases
+   Name    | Owner | Encoding |  Collate   |   Ctype    |      Access privileges      
+-----------+-------+----------+------------+------------+-----------------------------
+ mydb      | admin | UTF8     | en_US.utf8 | en_US.utf8 | 
+ postgres  | admin | UTF8     | en_US.utf8 | en_US.utf8 | 
+ template0 | admin | UTF8     | en_US.utf8 | en_US.utf8 | =c/admin                   +
+           |       |          |            |            | admin=CTc/admin
+ template1 | admin | UTF8     | en_US.utf8 | en_US.utf8 | =c/admin                   +
+           |       |          |            |            | admin=CTc/admin
+ test_db   | admin | UTF8     | en_US.utf8 | en_US.utf8 | =Tc/admin                  +
+           |       |          |            |            | admin=CTc/admin            +
+           |       |          |            |            | "test-admin-user"=CTc/admin
+(5 rows)
 
+```
+```
+test_db=# \d+ orders;
+                                                   Table "public.orders"
+    Column    |  Type   | Collation | Nullable |              Default               | Storage  | Stats target | Description 
+--------------+---------+-----------+----------+------------------------------------+----------+--------------+-------------
+ id           | integer |           | not null | nextval('orders_id_seq'::regclass) | plain    |              | 
+ наименование | text    |           |          |                                    | extended |              | 
+ цена         | integer |           |          |                                    | plain    |              | 
+Indexes:
+    "orders_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "clients" CONSTRAINT "clients_заказ_fkey" FOREIGN KEY ("заказ") REFERENCES orders(id)
+Access method: heap
+
+```
+```
+test_db=# \d+ clients;
+                                                      Table "public.clients"
+      Column       |  Type   | Collation | Nullable |               Default               | Storage  | Stats target | Description 
+-------------------+---------+-----------+----------+-------------------------------------+----------+--------------+-------------
+ id                | integer |           | not null | nextval('clients_id_seq'::regclass) | plain    |              | 
+ фамилия           | text    |           |          |                                     | extended |              | 
+ страна проживания | text    |           |          |                                     | extended |              | 
+ заказ             | integer |           |          |                                     | plain    |              | 
+Indexes:
+    "clients_pkey" PRIMARY KEY, btree (id)
+    "indcity" UNIQUE, btree ("страна проживания")
+Foreign-key constraints:
+    "clients_заказ_fkey" FOREIGN KEY ("заказ") REFERENCES orders(id)
+Access method: heap
+
+```
+```
+test_db=# \du
+                                       List of roles
+    Role name     |                         Attributes                         | Member of 
+------------------+------------------------------------------------------------+-----------
+ admin            | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+ test-admin-user  |                                                            | {}
+ test-simple-user |                                                            | {}
+```
+```
+test_db=# SELECT * FROM information_schema.role_table_grants WHERE grantee in ('test-admin-user','test-simple-user');
+ grantor |     grantee      | table_catalog | table_schema | table_name | privilege_type | is_grantable | with_hierarchy 
+---------+------------------+---------------+--------------+------------+----------------+--------------+----------------
+ admin   | test-admin-user  | test_db       | public       | orders     | INSERT         | NO           | NO
+ admin   | test-admin-user  | test_db       | public       | orders     | SELECT         | NO           | YES
+ admin   | test-admin-user  | test_db       | public       | orders     | UPDATE         | NO           | NO
+ admin   | test-admin-user  | test_db       | public       | orders     | DELETE         | NO           | NO
+ admin   | test-admin-user  | test_db       | public       | orders     | TRUNCATE       | NO           | NO
+ admin   | test-admin-user  | test_db       | public       | orders     | REFERENCES     | NO           | NO
+ admin   | test-admin-user  | test_db       | public       | orders     | TRIGGER        | NO           | NO
+ admin   | test-simple-user | test_db       | public       | orders     | INSERT         | NO           | NO
+ admin   | test-simple-user | test_db       | public       | orders     | SELECT         | NO           | YES
+ admin   | test-simple-user | test_db       | public       | orders     | UPDATE         | NO           | NO
+ admin   | test-simple-user | test_db       | public       | orders     | DELETE         | NO           | NO
+ admin   | test-admin-user  | test_db       | public       | clients    | INSERT         | NO           | NO
+ admin   | test-admin-user  | test_db       | public       | clients    | SELECT         | NO           | YES
+ admin   | test-admin-user  | test_db       | public       | clients    | UPDATE         | NO           | NO
+ admin   | test-admin-user  | test_db       | public       | clients    | DELETE         | NO           | NO
+ admin   | test-admin-user  | test_db       | public       | clients    | TRUNCATE       | NO           | NO
+ admin   | test-admin-user  | test_db       | public       | clients    | REFERENCES     | NO           | NO
+ admin   | test-admin-user  | test_db       | public       | clients    | TRIGGER        | NO           | NO
+ admin   | test-simple-user | test_db       | public       | clients    | INSERT         | NO           | NO
+ admin   | test-simple-user | test_db       | public       | clients    | SELECT         | NO           | YES
+ admin   | test-simple-user | test_db       | public       | clients    | UPDATE         | NO           | NO
+ admin   | test-simple-user | test_db       | public       | clients    | DELETE         | NO           | NO
+(22 rows)
+
+```
+***
 ## Задача 3
 
 Используя SQL синтаксис - наполните таблицы следующими тестовыми данными:
