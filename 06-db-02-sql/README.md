@@ -376,7 +376,64 @@ GRANT
 root@7dde49fc453b:/# psql  -f backup/dump.sql test_db
 psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "root" does not exist
 
-Вообщем не знаю насколько корректно, учитывая что перед этим дампом создава БД и роли,но в итоге все данные в востановленном бэкапе в новом контейнере есть)
+Вообщем не знаю насколько корректно, учитывая что перед этим дампом создавал БД и роли,но в итоге все данные в востановленном бэкапе в новом контейнере есть). Если не создавать БД и роли, то:
+```
+beketov@beketovs-MacBook-Pro postgreSQL % psql -h 127.0.0.1 -U admin
+Password for user admin: 
+psql: error: connection to server at "127.0.0.1", port 5432 failed: FATAL:  database "admin" does not exist
+
+beketov@beketovs-MacBook-Pro postgreSQL % docker exec -i new_postgres12 /bin/bash -c "PGPASSWORD=admin psql --username postgres test_db" < backup/dump.sql
+SET
+SET
+SET
+SET
+SET
+ set_config 
+------------
+ 
+(1 row)
+
+SET
+SET
+SET
+SET
+SET
+SET
+CREATE TABLE
+ERROR:  role "admin" does not exist
+CREATE SEQUENCE
+ERROR:  role "admin" does not exist
+ALTER SEQUENCE
+CREATE TABLE
+ERROR:  role "admin" does not exist
+CREATE SEQUENCE
+ERROR:  role "admin" does not exist
+ALTER SEQUENCE
+ALTER TABLE
+ALTER TABLE
+COPY 5
+COPY 5
+ setval 
+--------
+      1
+(1 row)
+
+ setval 
+--------
+      1
+(1 row)
+
+ALTER TABLE
+ALTER TABLE
+CREATE INDEX
+ALTER TABLE
+ERROR:  role "test-admin-user" does not exist
+ERROR:  role "test-simple-user" does not exist
+ERROR:  role "test-admin-user" does not exist
+ERROR:  role "test-simple-user" does not exist
+
+```
+Сейчас в итоге так:
 ```
 postgres=# \l
                                  List of databases
