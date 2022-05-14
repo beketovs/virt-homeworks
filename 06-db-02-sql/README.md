@@ -256,6 +256,20 @@ test_db=# SELECT COUNT (*) FROM clients;
  
 Подсказк - используйте директиву `UPDATE`.
 
+***
+```
+test_db=# UPDATE clients SET "заказ" = 3 WHERE id=1;
+UPDATE 1
+test_db=# UPDATE clients SET "заказ" = 4 WHERE id=2;
+UPDATE 1
+test_db=# UPDATE clients SET "заказ" = 5 WHERE id=3;
+UPDATE 1
+```
+```
+
+```
+***
+
 ## Задача 5
 
 Получите полную информацию по выполнению запроса выдачи всех пользователей из задачи 4 
