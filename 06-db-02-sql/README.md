@@ -369,6 +369,50 @@ GRANT
 GRANT
 GRANT
 ```
+Долго мучался с этим заданием. Может быть потому-что делаю на MacOS и сам docker работает в виртуальной машине. Даже напрямую в именованный volume попасть нельзя https://rocky-chen.medium.com/docker-unable-to-access-to-volume-with-screen-for-mac-9d016f5420e6 (p.s. поэтому задание №1 сделал с простым монитрованием).
+Ошибку "ERROR:  role "admin" does not exist" - проигнорировал, т.к. она по сути ни на что не влияет в плане нашей DB.
+Делая по документации при снятом бэкапе получал ошибку: 
+
+root@7dde49fc453b:/# psql  -f backup/dump.sql test_db
+psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "root" does not exist
+
+Вообщем не знаю насколько корректно, учитывая что перед этим дампом создава БД и роли,но в итоге все данные в востановленном бэкапе в новом контейнере есть)
+```
+postgres=# \l
+                                 List of databases
+   Name    |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges   
+-----------+----------+----------+------------+------------+-----------------------
+ postgres  | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ template0 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+ template1 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+ test_db   | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ 
+ postgres=# \c test_db;
+psql (14.3, server 12.10 (Debian 12.10-1.pgdg110+1))
+You are now connected to database "test_db" as user "postgres".
+test_db=# SELECT * FROM orders;
+ id | наименование | цена 
+----+--------------+------
+  1 | Шоколад      |   10
+  2 | Принтер      | 3000
+  3 | Книга        |  500
+  4 | Монитор      | 7000
+  5 | Гитара       | 4000
+(5 rows)
+
+test_db=# SELECT * FROM clients;
+ id |       фамилия        | страна проживания | заказ 
+----+----------------------+-------------------+-------
+  4 | Ронни Джеймс Дио     | Russia            |      
+  5 | Ritchie Blackmore    | Russia            |      
+  1 | Иванов Иван Иванович | USA               |     3
+  2 | Петров Петр Петрович | Canada            |     4
+  3 | Иоганн Себастьян Бах | Japan             |     5
+(5 rows)
+ 
+```
 ***
 ---
 
