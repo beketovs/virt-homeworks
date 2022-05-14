@@ -119,7 +119,7 @@ test_db=# \d+ clients;
  заказ             | integer |           |          |                                     | plain    |              | 
 Indexes:
     "clients_pkey" PRIMARY KEY, btree (id)
-    "indcity" UNIQUE, btree ("страна проживания")
+    "indcity" btree ("страна проживания")
 Foreign-key constraints:
     "clients_заказ_fkey" FOREIGN KEY ("заказ") REFERENCES orders(id)
 Access method: heap
@@ -209,7 +209,31 @@ test_db=# SELECT * FROM orders;
   5 | Гитара       | 4000
 (5 rows)
 
+test_db=# INSERT INTO clients VALUES (1, 'Иванов Иван Иванович', 'USA'), (2, 'Петров Петр Петрович', 'Canada'), (3, 'Иоганн Себастьян Бах', 'Japan'), (4, 'Ронни Джеймс Дио', 'Russia'), (5, 'Ritchie Blackmore', 'Russia');
 
+test_db=# SELECT * FROM clients;
+ id |       фамилия        | страна проживания | заказ 
+----+----------------------+-------------------+-------
+  1 | Иванов Иван Иванович | USA               |      
+  2 | Петров Петр Петрович | Canada            |      
+  3 | Иоганн Себастьян Бах | Japan             |      
+  4 | Ронни Джеймс Дио     | Russia            |      
+  5 | Ritchie Blackmore    | Russia            |      
+(5 rows)
+
+```
+```
+test_db=# SELECT COUNT (*) FROM orders;
+ count 
+-------
+     5
+(1 row)
+
+test_db=# SELECT COUNT (*) FROM clients;
+ count 
+-------
+     5
+(1 row)
 ```
 
 ***
