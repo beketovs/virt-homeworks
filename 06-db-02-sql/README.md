@@ -15,9 +15,6 @@
 ```
 beketov@beketovs-MacBook-Pro postgreSQL % cat docker-compose.yml 
 version: "3.9"
-volumes:
-  postgres_data: {}
-  postgres_backup: {}
 services:
   postgres:
     image: postgres:12
@@ -27,18 +24,18 @@ services:
       POSTGRES_DB: mydb
     container_name: postgres12
     volumes:
-    - postgres_data:/var/lib/postgresql/data
-    - postgres_backup:/backup
+    - /Users/beketov/Documents/docker/postgreSQL/data:/var/lib/postgresql/data
+    - /Users/beketov/Documents/docker/postgreSQL/backup:/backup
     ports:
     - "5432:5432"
     restart: always
 ```
 ```
-beketov@beketovs-MacBook-Pro postgreSQL % psql -h 127.0.0.1 -U admin -d mydb
+beketov@beketovs-MacBook-Pro postgreSQL % psql -d mydb -U admin -h 127.0.0.1
 Password for user admin: 
 psql (14.3, server 12.10 (Debian 12.10-1.pgdg110+1))
 Type "help" for help.
-mydb=# 
+
 mydb=# \l
                              List of databases
    Name    | Owner | Encoding |  Collate   |   Ctype    | Access privileges 
