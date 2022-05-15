@@ -369,14 +369,14 @@ GRANT
 GRANT
 GRANT
 ```
-Долго мучался с этим заданием. Может быть потому-что делаю на MacOS и сам docker работает в виртуальной машине. Даже напрямую в именованный volume попасть нельзя https://rocky-chen.medium.com/docker-unable-to-access-to-volume-with-screen-for-mac-9d016f5420e6 (p.s. поэтому задание №1 сделал с простым монитрованием).
+Долго мучался с этим заданием. Может быть потому-что делаю на MacOS где установленный docker работает в виртуальной машине, как следствие даже напрямую в именованный volume попасть нельзя https://rocky-chen.medium.com/docker-unable-to-access-to-volume-with-screen-for-mac-9d016f5420e6 (p.s. поэтому задание №1 сделал с простым монитрованием, а не именованными volume).
 Ошибку "ERROR:  role "admin" does not exist" - проигнорировал, т.к. она по сути ни на что не влияет в плане нашей DB.
 Делая по документации при снятом бэкапе получал ошибку: 
 
 root@7dde49fc453b:/# psql  -f backup/dump.sql test_db
 psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "root" does not exist
 
-Вообщем не знаю насколько корректно, учитывая что перед этим дампом создавал БД и роли,но в итоге все данные в востановленном бэкапе в новом контейнере есть). Если не создавать БД и роли, то:
+Вообщем не знаю насколько корректно, учитывая что перед этим дампом создавал БД и роли, но в итоге все данные в востановленном бэкапе в новом контейнере new_postgres12 есть). Если не создавать БД и роли, то:
 ```
 beketov@beketovs-MacBook-Pro postgreSQL % psql -h 127.0.0.1 -U admin
 Password for user admin: 
@@ -433,7 +433,7 @@ ERROR:  role "test-admin-user" does not exist
 ERROR:  role "test-simple-user" does not exist
 
 ```
-Сейчас в итоге так:
+Сейчас в итоге так, т.е. данные из бэкапа есть:
 ```
 postgres=# \l
                                  List of databases
