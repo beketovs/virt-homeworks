@@ -24,6 +24,53 @@
 
 В следующих заданиях мы будем продолжать работу с данным контейнером.
 
+***
+```
+mysql> status
+--------------
+mysql  Ver 8.0.29 for Linux on x86_64 (MySQL Community Server - GPL)
+
+Connection id:		15
+Current database:	test_db
+Current user:		root@localhost
+SSL:			Not in use
+Current pager:		stdout
+Using outfile:		''
+Using delimiter:	;
+Server version:		8.0.29 MySQL Community Server - GPL
+Protocol version:	10
+Connection:		Localhost via UNIX socket
+Server characterset:	utf8mb4
+Db     characterset:	utf8mb4
+Client characterset:	latin1
+Conn.  characterset:	latin1
+UNIX socket:		/var/run/mysqld/mysqld.sock
+Binary data as:		Hexadecimal
+Uptime:			10 min 46 sec
+
+Threads: 2  Questions: 88  Slow queries: 0  Opens: 183  Flush tables: 3  Open tables: 101  Queries per second avg: 0.136
+--------------
+```
+```
+mysql> SHOW TABLES;
++-------------------+
+| Tables_in_test_db |
++-------------------+
+| orders            |
++-------------------+
+1 row in set (0.00 sec)
+```
+```
+mysql> SELECT * FROM orders WHERE price > 300;
++----+----------------+-------+
+| id | title          | price |
++----+----------------+-------+
+|  2 | My little pony |   500 |
++----+----------------+-------+
+1 row in set (0.00 sec)
+```
+***
+
 ## Задача 2
 
 Создайте пользователя test в БД c паролем test-pass, используя:
