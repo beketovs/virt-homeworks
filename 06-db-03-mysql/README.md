@@ -87,6 +87,30 @@ mysql> SELECT * FROM orders WHERE price > 300;
 Используя таблицу INFORMATION_SCHEMA.USER_ATTRIBUTES получите данные по пользователю `test` и 
 **приведите в ответе к задаче**.
 
+***
+```
+mysql> CREATE USER 'test' IDENTIFIED BY 'test-pass';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> ALTER USER 'test' IDENTIFIED BY 'test-pass' WITH MAX_QUERIES_PER_HOUR 100 PASSWORD EXPIRE INTERVAL 180 DAY FAILED_LOGIN_ATTEMPTS 3;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> ALTER USER 'test' ATTRIBUTE '{"first_name":"James", "last_name":"Pretty"}';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> GRANT Select ON test_db.orders TO 'test';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM INFORMATION_SCHEMA.USER_ATTRIBUTES WHERE USER='test';
++------+------+------------------------------------------------+
+| USER | HOST | ATTRIBUTE                                      |
++------+------+------------------------------------------------+
+| test | %    | {"last_name": "Pretty", "first_name": "James"} |
++------+------+------------------------------------------------+
+1 row in set (0.00 sec)
+```
+***
+
 ## Задача 3
 
 Установите профилирование `SET profiling = 1`.
