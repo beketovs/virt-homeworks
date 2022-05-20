@@ -92,7 +92,13 @@ INFO:  analyzing "public.orders"
 INFO:  "orders": scanned 1 of 1 pages, containing 8 live rows and 0 dead rows; 8 rows in sample, 8 estimated total rows
 ANALYZE
 
-
+test_database=# SELECT avg_width FROM pg_stats WHERE TABLENAME='orders';
+ avg_width 
+-----------
+         4
+        16
+         4
+(3 rows)
 ```
 ***
 
