@@ -37,8 +37,8 @@ Did not find any relations.
 
 postgres-# \d[S+] NAME
 
-
-
+mydb=# \q
+beketov@beketovs-MacBook-Pro 13 % 
 ```
 ***
 
