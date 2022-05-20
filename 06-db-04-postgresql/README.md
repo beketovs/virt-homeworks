@@ -71,6 +71,7 @@ psql (14.3, server 13.7 (Debian 13.7-1.pgdg110+1))
 Type "help" for help.
 
 test_database=# \d
+
              List of relations
  Schema |     Name      |   Type   | Owner 
 --------+---------------+----------+-------
