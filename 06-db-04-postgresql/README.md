@@ -35,7 +35,7 @@ You are connected to database "mydb" as user "admin" on host "127.0.0.1" at port
 mydb=# \d
 Did not find any relations.
 
-postgres-# \d[S+] NAME
+mydb=# \d[S+] NAME
 
 mydb=# \q
 beketov@beketovs-MacBook-Pro 13 % 
