@@ -79,6 +79,20 @@ test_database=# \d
  public | orders        | table    | admin
  public | orders_id_seq | sequence | admin
 (2 rows)
+
+beketov@beketovs-MacBook-Pro backup % docker exec -it postgres13 /bin/bash
+root@2cf6d06a8d54:/# psql -U admin -d test_database
+psql (13.7 (Debian 13.7-1.pgdg110+1))
+Type "help" for help.
+
+test_database=# 
+
+test_database=# ANALYZE VERBOSE orders;
+INFO:  analyzing "public.orders"
+INFO:  "orders": scanned 1 of 1 pages, containing 8 live rows and 0 dead rows; 8 rows in sample, 8 estimated total rows
+ANALYZE
+
+
 ```
 ***
 
