@@ -14,6 +14,33 @@
 - вывода списка таблиц
 - вывода описания содержимого таблиц
 - выхода из psql
+***
+```
+mydb=# \l
+                             List of databases
+   Name    | Owner | Encoding |  Collate   |   Ctype    | Access privileges 
+-----------+-------+----------+------------+------------+-------------------
+ mydb      | admin | UTF8     | en_US.utf8 | en_US.utf8 | 
+ postgres  | admin | UTF8     | en_US.utf8 | en_US.utf8 | 
+ template0 | admin | UTF8     | en_US.utf8 | en_US.utf8 | =c/admin         +
+           |       |          |            |            | admin=CTc/admin
+ template1 | admin | UTF8     | en_US.utf8 | en_US.utf8 | =c/admin         +
+           |       |          |            |            | admin=CTc/admin
+(4 rows)
+
+mydb=# \conninfo
+You are connected to database "mydb" as user "admin" on host "127.0.0.1" at port "5432".
+
+# Таблиц нет.
+mydb=# \d
+Did not find any relations.
+
+postgres-# \d[S+] NAME
+
+
+
+```
+***
 
 ## Задача 2
 
