@@ -59,6 +59,27 @@ beketov@beketovs-MacBook-Pro 13 %
 
 **Приведите в ответе** команду, которую вы использовали для вычисления и полученный результат.
 
+***
+mydb=# CREATE DATABASE test_database;
+CREATE DATABASE
+
+beketov@beketovs-MacBook-Pro backup % cat test_dump.sql| docker exec -i postgres13 psql -U admin -d test_database
+
+beketov@beketovs-MacBook-Pro backup % psql -h 127.0.0.1 -d test_database -U admin                            
+Password for user admin: 
+psql (14.3, server 13.7 (Debian 13.7-1.pgdg110+1))
+Type "help" for help.
+
+test_database=# \d
+             List of relations
+ Schema |     Name      |   Type   | Owner 
+--------+---------------+----------+-------
+ public | orders        | table    | admin
+ public | orders_id_seq | sequence | admin
+(2 rows)
+
+***
+
 ## Задача 3
 
 Архитектор и администратор БД выяснили, что ваша таблица orders разрослась до невиданных размеров и
