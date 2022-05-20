@@ -60,6 +60,7 @@ beketov@beketovs-MacBook-Pro 13 %
 **Приведите в ответе** команду, которую вы использовали для вычисления и полученный результат.
 
 ***
+```
 mydb=# CREATE DATABASE test_database;
 CREATE DATABASE
 
@@ -78,7 +79,7 @@ test_database=# \d
  public | orders        | table    | admin
  public | orders_id_seq | sequence | admin
 (2 rows)
-
+```
 ***
 
 ## Задача 3
