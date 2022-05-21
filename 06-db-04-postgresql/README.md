@@ -149,7 +149,7 @@ test_database=# \d
 ```
 beketov@beketovs-MacBook-Pro backup % docker exec -t postgres13 pg_dump -c -U admin -d test_database  > dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql
 
-Добавить строчку "NIQUE(title)" в:
+Добавить строчку "UNIQUE(title)" в:
 
 CREATE TABLE public.orders (
     id integer NOT NULL,
