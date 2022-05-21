@@ -145,6 +145,21 @@ test_database=# \d
 
 Как бы вы доработали бэкап-файл, чтобы добавить уникальность значения столбца `title` для таблиц `test_database`?
 
+***
+```
+beketov@beketovs-MacBook-Pro backup % docker exec -t postgres13 pg_dump -c -U admin -d test_database  > dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql
+
+Добавить строчку "NIQUE(title)" в:
+
+CREATE TABLE public.orders (
+    id integer NOT NULL,
+    title character varying(80) NOT NULL,
+    price integer DEFAULT 0,
+    UNIQUE(title)
+);
+```
+***
+
 ---
 
 ### Как cдавать задание
