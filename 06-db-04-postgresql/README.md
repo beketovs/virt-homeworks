@@ -112,6 +112,32 @@ test_database=# SELECT avg_width FROM pg_stats WHERE TABLENAME='orders';
 
 Можно ли было изначально исключить "ручное" разбиение при проектировании таблицы orders?
 
+***
+```
+test_database=# CREATE TABLE orders_1 (
+CHECK (price > 499)
+)
+INHERITS (orders);
+CREATE TABLE
+test_database=# CREATE TABLE orders_2 (
+CHECK ( price <= 499)
+)
+ INHERITS (orders);
+CREATE TABLE
+test_database=# \d
+             List of relations
+ Schema |     Name      |   Type   | Owner 
+--------+---------------+----------+-------
+ public | orders        | table    | admin
+ public | orders_1      | table    | admin
+ public | orders_2      | table    | admin
+ public | orders_id_seq | sequence | admin
+(4 rows)
+```
+
+Изначальное разбиение таблицы при проектировании предпочтительнее, чем в дальнейшем вручную разбибвать таблицы при шардировании.
+***
+
 ## Задача 4
 
 Используя утилиту `pg_dump` создайте бекап БД `test_database`.
