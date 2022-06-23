@@ -14,6 +14,9 @@
 У Golang есть обучающая интерактивная консоль [https://tour.golang.org/](https://tour.golang.org/). 
 Рекомендуется изучить максимальное количество примеров. В консоли уже написан необходимый код, 
 осталось только с ним ознакомиться и поэкспериментировать как написано в инструкции в левой части экрана.  
+***
+Ознакомился.
+***
 
 ## Задача 3. Написание кода. 
 Цель этого задания закрепить знания о базовом синтаксисе языка. Можно использовать редактор кода 
@@ -37,6 +40,27 @@
         fmt.Println(output)    
     }
     ```
+    ***
+    ```
+beketov@beketovs-MacBook-Pro golang % cat 1_hw.go   
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Print("Enter a number in foot: ")
+	var input float64
+	fmt.Scanf("%f", &input)
+
+	output := input * 0.3048
+
+	fmt.Println("Value in meters =", output)
+}
+beketov@beketovs-MacBook-Pro golang % go run 1_hw.go
+Enter a number in foot: 436
+Value in meters = 132.8928
+    ```
+    ***
  
 1. Напишите программу, которая найдет наименьший элемент в любом заданном списке, например:
     ```
