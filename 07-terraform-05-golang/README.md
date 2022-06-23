@@ -6,6 +6,9 @@
 ## Задача 1. Установите golang.
 1. Воспользуйтесь инструкций с официального сайта: [https://golang.org/](https://golang.org/).
 2. Так же для тестирования кода можно использовать песочницу: [https://play.golang.org/](https://play.golang.org/).
+***
+![Screen Shot 2022-06-23 at 18 03 32](https://user-images.githubusercontent.com/36231585/175331342-016dce65-a01e-4a1d-9117-1cd06bb77c91.png)
+***
 
 ## Задача 2. Знакомство с gotour.
 У Golang есть обучающая интерактивная консоль [https://tour.golang.org/](https://tour.golang.org/). 
