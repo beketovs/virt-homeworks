@@ -40,8 +40,10 @@
         fmt.Println(output)    
     }
     ```
-    ***
-    ```
+***
+    
+```
+    
 beketov@beketovs-MacBook-Pro golang % cat 1_hw.go   
 package main
 
@@ -59,8 +61,9 @@ func main() {
 beketov@beketovs-MacBook-Pro golang % go run 1_hw.go
 Enter a number in foot: 436
 Value in meters = 132.8928
-    ```
-    ***
+
+```
+***
  
 1. Напишите программу, которая найдет наименьший элемент в любом заданном списке, например:
     ```
