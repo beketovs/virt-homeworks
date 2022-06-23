@@ -42,23 +42,7 @@
     ```
     ***
     ```
-beketov@beketovs-MacBook-Pro golang % cat 1_hw.go   
-package main
 
-import "fmt"
-
-func main() {
-	fmt.Print("Enter a number in foot: ")
-	var input float64
-	fmt.Scanf("%f", &input)
-
-	output := input * 0.3048
-
-	fmt.Println("Value in meters =", output)
-}
-beketov@beketovs-MacBook-Pro golang % go run 1_hw.go
-Enter a number in foot: 436
-Value in meters = 132.8928
     ```
     ***
  
