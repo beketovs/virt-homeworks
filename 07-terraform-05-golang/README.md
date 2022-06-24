@@ -97,6 +97,58 @@ beketov@beketovs-MacBook-Pro golang % go run 2_hw.go
 ***
 1. Напишите программу, которая выводит числа от 1 до 100, которые делятся на 3. То есть `(3, 6, 9, …)`.
 
+***
+```
+beketov@beketovs-MacBook-Pro golang % cat 3_hw.go   
+package main
+
+import "fmt"
+
+func main() {
+
+for i :=1; i <= 100; i++ {
+  if (i % 3) == 0 {
+    fmt.Println(i)
+  }
+}
+}
+beketov@beketovs-MacBook-Pro golang % go run 3_hw.go
+3
+6
+9
+12
+15
+18
+21
+24
+27
+30
+33
+36
+39
+42
+45
+48
+51
+54
+57
+60
+63
+66
+69
+72
+75
+78
+81
+84
+87
+90
+93
+96
+99
+```
+***
+
 В виде решения ссылку на код или сам код. 
 
 ## Задача 4. Протестировать код (не обязательно).
