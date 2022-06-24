@@ -71,7 +71,7 @@ Value in meters = 132.8928
     ```
 ***
 ```
-beketov@beketovs-MacBook-Pro golang % cat 2_gw.go 
+beketov@beketovs-MacBook-Pro golang % cat 2_hw.go 
 package main
 
 import "fmt"
@@ -91,7 +91,7 @@ temp := -9999999999999
 fmt.Println(temp)
 }
 
-beketov@beketovs-MacBook-Pro golang % go run 2_gw.go
+beketov@beketovs-MacBook-Pro golang % go run 2_hw.go
 97
 ```
 ***
