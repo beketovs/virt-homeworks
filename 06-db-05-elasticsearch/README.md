@@ -120,6 +120,33 @@ beketov@beketovs-MacBook-Pro elasticsearch % curl localhost:9200
 При проектировании кластера elasticsearch нужно корректно рассчитывать количество реплик и шард,
 иначе возможна потеря данных индексов, вплоть до полной, при деградации системы.
 
+***
+```
+Создание индексов:
+beketov@beketovs-MacBook-Pro elasticsearch % curl -X PUT localhost:9200/ind-1 -H 'Content-Type: application/json' -d'{ "settings": { "number_of_shards": 1,  "number_of_replicas": 0 }}'
+{"acknowledged":true,"shards_acknowledged":true,"index":"ind-1"}%                                                                            
+beketov@beketovs-MacBook-Pro elasticsearch % curl -X PUT localhost:9200/ind-2 -H 'Content-Type: application/json' -d'{ "settings": { "number_of_shards": 2,  "number_of_replicas": 1 }}'
+{"acknowledged":true,"shards_acknowledged":true,"index":"ind-2"}%                                                                            
+beketov@beketovs-MacBook-Pro elasticsearch % curl -X PUT localhost:9200/ind-3 -H 'Content-Type: application/json' -d'{ "settings": { "number_of_shards": 4,  "number_of_replicas": 2 }}'
+{"acknowledged":true,"shards_acknowledged":true,"index":"ind-3"}%
+
+Просмотр статусов:
+beketov@beketovs-MacBook-Pro elasticsearch % curl -X GET 'http://localhost:9200/_cat/indices?v' 
+health status index uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   ind-1 QE4sRq8cR62BTdANo5-trw   1   0          0            0       208b           208b
+yellow open   ind-3 V_9opFzvR-e9ohu9Umk23w   4   2          0            0       208b           208b
+yellow open   ind-2 PmmgREG3RzeF0aeeObcGCg   2   1          0            0       416b           416b
+
+Удаление индексов:
+beketov@beketovs-MacBook-Pro elasticsearch % curl -XDELETE http://127.0.0.1:9200/ind-1
+{"acknowledged":true}%                                                                                                                       beketov@beketovs-MacBook-Pro elasticsearch % curl -XDELETE http://127.0.0.1:9200/ind-2
+{"acknowledged":true}%                                                                                                                       beketov@beketovs-MacBook-Pro elasticsearch % curl -XDELETE http://127.0.0.1:9200/ind-3
+{"acknowledged":true}%                                                                                                                       beketov@beketovs-MacBook-Pro elasticsearch % curl 'localhost:9200/_cat/indices?v'     
+health status index uuid pri rep docs.count docs.deleted store.size pri.store.size
+```
+Некоторые индексы в состоянии yellow, т.к. мы задавали количетсво реплик, но реплицировать некуда, т.к. у нас только один сервер.
+***
+
 ## Задача 3
 
 В данном задании вы научитесь:
@@ -150,6 +177,9 @@ beketov@beketovs-MacBook-Pro elasticsearch % curl localhost:9200
 Подсказки:
 - возможно вам понадобится доработать `elasticsearch.yml` в части директивы `path.repo` и перезапустить `elasticsearch`
 
+***
+
+***
 ---
 
 ### Как cдавать задание
