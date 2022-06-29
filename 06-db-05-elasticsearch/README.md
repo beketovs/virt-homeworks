@@ -198,7 +198,6 @@ beketov@beketovs-MacBook-Pro elasticsearch % curl -X PUT "localhost:9200/_snapsh
 beketov@beketovs-MacBook-Pro elasticsearch % curl -X PUT localhost:9200/test -H 'Content-Type: application/json' -d'{ "settings": { "number_of_shards": 1,  "number_of_replicas": 0 }}'
 {"acknowledged":true,"shards_acknowledged":true,"index":"test"}%
 
-```
 Создаем snapshot:
 beketov@beketovs-MacBook-Pro elasticsearch % curl -X PUT "localhost:9200/_snapshot/netology_backup/elasticsearch?wait_for_completion=true&pretty"
 
@@ -242,7 +241,34 @@ drwxr-xr-x 3 elasticsearch elasticsearch  4096 Jun 29 14:00 indices
 -rw-r--r-- 1 elasticsearch elasticsearch 30935 Jun 29 14:00 meta-UViacEpvRxSfJjvOx7gt2g.dat
 -rw-r--r-- 1 elasticsearch elasticsearch   269 Jun 29 14:00 snap-UViacEpvRxSfJjvOx7gt2g.dat
 
+Удаляем индекс test и создаем test-2:
+[elasticsearch@2e8fdb5f637d snapshots]$ curl -X DELETE 'http://localhost:9200/test?pretty'
+{
+  "acknowledged" : true
+}
+[elasticsearch@2e8fdb5f637d snapshots]$ curl -X PUT localhost:9200/test-2?pretty -H 'Content-Type: application/json' -d'{ "settings": { "number_of_shards": 1,  "number_of_replicas": 0 }}'
+{
+  "acknowledged" : true,
+  "shards_acknowledged" : true,
+  "index" : "test-2"
+}
+[elasticsearch@2e8fdb5f637d snapshots]$ curl -X GET 'http://localhost:9200/_cat/indices?v' 
+health status index  uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   test-2 vLmJMbGFTI-s1O_P5DNDbg   1   0          0            0       208b           208b
 
+Восстанавливаем состояние кластера из snapshot:
+[elasticsearch@2e8fdb5f637d snapshots]$ curl -X POST localhost:9200/_snapshot/netology_backup/elasticsearch/_restore?pretty -H 'Content-Type: application/json' -d'{"include_global_state":true}'
+{
+  "accepted" : true
+}
+
+Смотрим индексы:
+[elasticsearch@2e8fdb5f637d snapshots]$ curl -X GET 'http://localhost:9200/_cat/indices?v'
+health status index  uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   test-2 vLmJMbGFTI-s1O_P5DNDbg   1   0          0            0       208b           208b
+green  open   test   mdz7LkZVRDytUCUCSK43Dw   1   0          0            0       208b           208b
+
+```
 ***
 ---
 
