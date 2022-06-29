@@ -199,6 +199,50 @@ beketov@beketovs-MacBook-Pro elasticsearch % curl -X PUT localhost:9200/test -H 
 {"acknowledged":true,"shards_acknowledged":true,"index":"test"}%
 
 ```
+Создаем snapshot:
+beketov@beketovs-MacBook-Pro elasticsearch % curl -X PUT "localhost:9200/_snapshot/netology_backup/elasticsearch?wait_for_completion=true&pretty"
+
+
+{
+  "snapshot" : {
+    "snapshot" : "elasticsearch",
+    "uuid" : "UViacEpvRxSfJjvOx7gt2g",
+    "version_id" : 7110199,
+    "version" : "7.11.1",
+    "indices" : [
+      "test"
+    ],
+    "data_streams" : [ ],
+    "include_global_state" : true,
+    "state" : "SUCCESS",
+    "start_time" : "2022-06-29T14:00:16.413Z",
+    "start_time_in_millis" : 1656511216413,
+    "end_time" : "2022-06-29T14:00:16.413Z",
+    "end_time_in_millis" : 1656511216413,
+    "duration_in_millis" : 0,
+    "failures" : [ ],
+    "shards" : {
+      "total" : 1,
+      "failed" : 0,
+      "successful" : 1
+    }
+  }
+}
+
+Смотрим, что snapshot создался:
+beketov@beketovs-MacBook-Pro elasticsearch % docker exec -it elastic /bin/bash                                                                
+[elasticsearch@2e8fdb5f637d /]$ cd elasticsearch-7.11.1/snapshots/
+[elasticsearch@2e8fdb5f637d snapshots]$ ls -la
+total 60
+drwxr-xr-x 1 elasticsearch elasticsearch  4096 Jun 29 14:00 .
+drwxr-xr-x 1 elasticsearch elasticsearch  4096 Jun 27 23:45 ..
+-rw-r--r-- 1 elasticsearch elasticsearch   437 Jun 29 14:00 index-2
+-rw-r--r-- 1 elasticsearch elasticsearch     8 Jun 29 14:00 index.latest
+drwxr-xr-x 3 elasticsearch elasticsearch  4096 Jun 29 14:00 indices
+-rw-r--r-- 1 elasticsearch elasticsearch 30935 Jun 29 14:00 meta-UViacEpvRxSfJjvOx7gt2g.dat
+-rw-r--r-- 1 elasticsearch elasticsearch   269 Jun 29 14:00 snap-UViacEpvRxSfJjvOx7gt2g.dat
+
+
 ***
 ---
 
