@@ -178,7 +178,27 @@ health status index uuid pri rep docs.count docs.deleted store.size pri.store.si
 - возможно вам понадобится доработать `elasticsearch.yml` в части директивы `path.repo` и перезапустить `elasticsearch`
 
 ***
+```
+Регистрация snapshots:
+beketov@beketovs-MacBook-Pro elasticsearch % curl -X PUT "localhost:9200/_snapshot/netology_backup?pretty" -H 'Content-Type: application/json' -d'
+{
+  "type": "fs",
+  "settings": {
+    "location": "/elasticsearch-7.11.1/snapshots"   
+  }
+}
+'
 
+
+{
+  "acknowledged" : true
+}
+
+Создаем индекс test:
+beketov@beketovs-MacBook-Pro elasticsearch % curl -X PUT localhost:9200/test -H 'Content-Type: application/json' -d'{ "settings": { "number_of_shards": 1,  "number_of_replicas": 0 }}'
+{"acknowledged":true,"shards_acknowledged":true,"index":"test"}%
+
+```
 ***
 ---
 
